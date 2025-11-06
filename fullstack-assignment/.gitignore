@@ -1,0 +1,10 @@
+# This is a simple .gitignore for fullstack JS/Node/React
+node_modules/
+.env
+dist/
+build/
+coverage/
+logs/
+*.log
+out/
+.DS_Store

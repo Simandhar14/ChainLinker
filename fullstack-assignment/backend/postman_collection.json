@@ -1,0 +1,66 @@
+{
+  "info": {
+    "_postman_id": "example-collection-id-12345",
+    "name": "Fullstack Assignment Backend API",
+    "description": "Postman collection with sample requests for the backend endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Token Insight",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:4000/api/token/chainlink/insight",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "token", "chainlink", "insight"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"vs_currency\": \"usd\",\n  \"history_days\": 30\n}"
+        }
+      },
+      "response": [
+        {
+          "name": "Sample Success",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"source\": \"coingecko\",\n  \"token\": {\n    \"id\": \"chainlink\",\n    \"symbol\": \"link\",\n    \"name\": \"Chainlink\",\n    \"market_data\": {\n      \"current_price_usd\": 7.23,\n      \"market_cap_usd\": 3500000000,\n      \"total_volume_usd\": 120000000,\n      \"price_change_percentage_24h\": -1.2\n    }\n  },\n  \"insight\": {\n    \"reasoning\": \"Generic market comment\",\n    \"sentiment\": \"Neutral\"\n  },\n  \"model\": { \"provider\": \"openai\", \"model\": \"gpt-4.1\" }\n}"
+        }
+      ]
+    },
+    {
+      "name": "HyperLiquid Wallet Daily PnL",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/api/hyperliquid/0xabc123/pnl?start=2025-08-01&end=2025-08-03",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "hyperliquid", "0xabc123", "pnl"],
+          "query": [
+            { "key": "start", "value": "2025-08-01" },
+            { "key": "end", "value": "2025-08-03" }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Sample PnL Success",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"wallet\": \"0xabc123...\",\n  \"start\": \"2025-08-01\",\n  \"end\": \"2025-08-03\",\n  \"daily\": [\n    {\n      \"date\": \"2025-08-01\",\n      \"realized_pnl_usd\": 120.5,\n      \"unrealized_pnl_usd\": -15.3,\n      \"fees_usd\": 2.1,\n      \"funding_usd\": -0.5,\n      \"net_pnl_usd\": 102.6,\n      \"equity_usd\": 10102.6\n    }\n  ],\n  \"summary\": {\n    \"total_realized_usd\": 120.5,\n    \"total_unrealized_usd\": -25.3,\n    \"total_fees_usd\": 3.3,\n    \"total_funding_usd\": -0.8,\n    \"net_pnl_usd\": 91.1\n  },\n  \"diagnostics\": {\n    \"data_source\": \"hyperliquid_api\",\n    \"last_api_call\": \"2025-09-22T12:00:00Z\",\n    \"notes\": \"PnL calculated using daily close prices\"\n  }\n}"
+        }
+      ]
+    }
+  ]
+}

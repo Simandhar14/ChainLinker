@@ -1,0 +1,10 @@
+# Frontend .gitignore (React/Vite)
+node_modules/
+.env
+dist/
+build/
+coverage/
+logs/
+*.log
+out/
+.DS_Store
